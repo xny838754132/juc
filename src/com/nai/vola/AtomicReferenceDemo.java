@@ -3,7 +3,7 @@ package com.nai.vola;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class Test {
+public class AtomicReferenceDemo {
 
     AtomicReference<Thread> atomicReference = new AtomicReference<>();
 
@@ -21,15 +21,15 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        Test test = new Test();
+        AtomicReferenceDemo atomicReferenceDemo = new AtomicReferenceDemo();
         new Thread(() -> {
-            test.myLock();
+            atomicReferenceDemo.myLock();
             try {
                 TimeUnit.SECONDS.sleep(5);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            test.myUnLock();
+            atomicReferenceDemo.myUnLock();
         },"t1").start();
         try {
             TimeUnit.SECONDS.sleep(1);
@@ -37,8 +37,8 @@ public class Test {
             e.printStackTrace();
         }
         new Thread(()->{
-            test.myLock();
-            test.myUnLock();
+            atomicReferenceDemo.myLock();
+            atomicReferenceDemo.myUnLock();
         },"t2").start();
 
     }
